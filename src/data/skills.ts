@@ -17,11 +17,11 @@ export const skills = {
   },
   "AI & Data": {
     icon: "",
-    items: ["Machine Learning", "NLP", "Data Analysis", "Prompt Engineering"],
+    items: ["NLP", "Data Analysis", "Prompt Engineering"],
   },
   "Domain Expertise": {
     icon: "",
-    items: ["FinTech Systems", "Cybersecurity", "Digital Marketing", "SEO"],
+    items: ["Digital Marketing", "SEO"],
   },
   "Languages": {
     icon: "",

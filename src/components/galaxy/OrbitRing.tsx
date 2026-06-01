@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
 interface OrbitRingProps {
@@ -26,18 +26,16 @@ export default function OrbitRing({
     return pts;
   }, [radius]);
 
-  const geometry = useMemo(() => {
-    return new THREE.BufferGeometry().setFromPoints(points);
-  }, [points]);
+  const lineObj = useMemo(() => {
+    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+    const material = new THREE.LineBasicMaterial({
+      color,
+      transparent: true,
+      opacity: isHighlighted ? 0.4 : 0.08,
+      linewidth: 1,
+    });
+    return new THREE.Line(geometry, material);
+  }, [points, color, isHighlighted]);
 
-  return (
-    <line geometry={geometry}>
-      <lineBasicMaterial
-        color={color}
-        transparent
-        opacity={isHighlighted ? 0.4 : 0.08}
-        linewidth={1}
-      />
-    </line>
-  );
+  return <primitive object={lineObj} />;
 }

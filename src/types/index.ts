@@ -36,3 +36,27 @@ export interface ProjectFrontmatter {
   featured: boolean;
   order: number;
 }
+
+export interface TechProject {
+  id: string;
+  title: string;
+  tagline: string;
+  category: string;
+  categoryColor: string;
+  description: string;
+  techStack: string[];
+  skills: string[];
+  github?: string;
+  report?: string;
+  slides?: string;
+  logo?: string;
+  duration?: string;
+  teamSize?: number;
+  context?: string;
+  problem?: string;
+  solution?: string;
+  contributions?: string[];
+  features?: { title: string; items: string[] }[];
+  screenshots?: string[];
+  extraDocs?: { label: string; href: string }[];
+}

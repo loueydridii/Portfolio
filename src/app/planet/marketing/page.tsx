@@ -8,6 +8,7 @@ import {
   Image as ImageIcon,
   Sparkles,
   Handshake,
+  ExternalLink,
 } from "lucide-react";
 
 const containerVariants = {
@@ -142,27 +143,49 @@ export default function MarketingPlanetPage() {
             </motion.div>
           ))}
 
-          {/* Gallery Placeholder */}
+          {/* Design Gallery CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            id="design-gallery-cta"
           >
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
               <ImageIcon className="w-5 h-5 text-nebula-pink" />
-              Gallery
+              Design Gallery
             </h2>
-            <div className="glass rounded-2xl p-12 text-center">
-              <ImageIcon className="w-12 h-12 text-text-muted mx-auto mb-4" />
-              <p className="text-text-muted">
-                Design portfolio gallery coming soon.
-              </p>
-              <p className="text-sm text-text-muted mt-1">
-                Add posters, branding, and videos to{" "}
-                <code className="text-nebula-pink text-xs">
-                  content/marketing/assets/
-                </code>
-              </p>
+            <div className="glass rounded-2xl p-10 sm:p-14 text-center relative overflow-hidden group">
+              {/* Animated background glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 via-fuchsia-500/5 to-purple-500/5 group-hover:from-pink-500/10 group-hover:via-fuchsia-500/10 group-hover:to-purple-500/10 transition-all duration-700" />
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-pink-500/10 rounded-full blur-3xl group-hover:bg-pink-500/20 transition-all duration-700" />
+              <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-fuchsia-500/10 rounded-full blur-3xl group-hover:bg-fuchsia-500/20 transition-all duration-700" />
+
+              <div className="relative z-10">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500/20 to-fuchsia-500/20 border border-pink-500/20 mb-6">
+                  <Sparkles className="w-8 h-8 text-pink-400" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-3">
+                  Explore My Creative Universe
+                </h3>
+                <p className="text-text-secondary text-sm sm:text-base max-w-lg mx-auto mb-8">
+                  From social media creatives to brand identities and event
+                  collateral — dive into a curated collection of my design work.
+                </p>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/btn inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-semibold text-white bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 hover:from-pink-400 hover:via-fuchsia-400 hover:to-purple-400 shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 hover:scale-105"
+                  id="gallery-drive-link"
+                >
+                  <Palette className="w-5 h-5" />
+                  Launch the Design Gallery
+                  <ExternalLink className="w-4 h-4 opacity-70 group-hover/btn:opacity-100 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-all duration-200" />
+                </a>
+                <p className="text-xs text-text-muted mt-4">
+                  Opens in Google Drive — posters, branding, videos & more
+                </p>
+              </div>
             </div>
           </motion.div>
         </div>

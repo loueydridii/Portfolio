@@ -16,8 +16,8 @@ const ORBIT_SIZES_VMIN = [22, 30, 38, 46, 54, 62];
 // Duration for each orbit in seconds (outer = slower)
 const ORBIT_DURATIONS = [18, 26, 34, 44, 56, 70];
 
-// 2D Fallback for mobile / low-perf
-function Galaxy2DFallback({
+// ── Tablet+ orbit scene (sm and above) ─────────────────────────────────────
+function Galaxy2DOrbit({
   onPlanetClick,
 }: {
   onPlanetClick: (id: string) => void;
@@ -29,7 +29,7 @@ function Galaxy2DFallback({
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, type: "spring" }}
-        className="absolute w-14 h-14 sm:w-20 sm:h-20 rounded-full flex items-center justify-center z-20"
+        className="absolute w-20 h-20 rounded-full flex items-center justify-center z-20"
         style={{
           background:
             "radial-gradient(circle at 35% 35%, #a855f7, #7B2FF7, #4c1d95)",
@@ -38,12 +38,12 @@ function Galaxy2DFallback({
           animation: "pulse-glow 3s ease-in-out infinite",
         }}
       >
-        <span className="text-[10px] sm:text-xs font-bold text-white tracking-wide">
+        <span className="text-xs font-bold text-white tracking-wide">
           Louey
         </span>
       </motion.div>
 
-      {/* Orbit rings + planets via CSS animation */}
+      {/* Orbit rings + planets */}
       {planets.map((planet, i) => {
         const orbitSize = ORBIT_SIZES_VMIN[i];
         const duration = ORBIT_DURATIONS[i];
@@ -54,16 +54,14 @@ function Galaxy2DFallback({
         return (
           <div
             key={planet.id}
-            // Orbit ring
             className="absolute rounded-full border border-white/[0.06]"
             style={{
               width: `${orbitSize}vmin`,
               height: `${orbitSize}vmin`,
-              // Spin the ring — the planet rides at the top of it
               animation: `orbit-slow ${duration}s linear infinite`,
             }}
           >
-            {/* Counter-rotate wrapper — cancel out the ring's spin so planet faces up */}
+            {/* Counter-rotate so the planet label stays upright */}
             <div
               className="absolute"
               style={{
@@ -73,7 +71,6 @@ function Galaxy2DFallback({
                 animation: `orbit-slow ${duration}s linear infinite reverse`,
               }}
             >
-              {/* Planet with Framer Motion reveal */}
               <motion.button
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -83,7 +80,7 @@ function Galaxy2DFallback({
                 aria-label={`Navigate to ${planet.name}`}
               >
                 <div
-                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-sm sm:text-base transition-transform duration-300 group-hover:scale-125 group-active:scale-110"
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-base transition-transform duration-300 group-hover:scale-125 group-active:scale-110"
                   style={{
                     background: `radial-gradient(circle at 30% 30%, ${planet.colors.secondary}, ${planet.colors.primary})`,
                     boxShadow: `0 0 14px ${planet.colors.glow}, 0 0 28px ${planet.colors.glow}`,
@@ -91,7 +88,7 @@ function Galaxy2DFallback({
                 >
                   {planet.icon}
                 </div>
-                <span className="text-[9px] sm:text-[11px] text-text-muted group-hover:text-text-primary group-active:text-text-primary transition-colors font-medium whitespace-nowrap bg-space-void/60 px-1 rounded">
+                <span className="text-[11px] text-text-muted group-hover:text-text-primary group-active:text-text-primary transition-colors font-medium whitespace-nowrap bg-space-void/60 px-1 rounded">
                   {label}
                 </span>
               </motion.button>
@@ -99,6 +96,53 @@ function Galaxy2DFallback({
           </div>
         );
       })}
+    </div>
+  );
+}
+
+// ── Mobile planet grid (xs only, < sm) ─────────────────────────────────────
+// Rendered as a sibling of the hero overlay at z-20 so nothing can block taps.
+function MobilePlanetGrid({
+  onPlanetClick,
+}: {
+  onPlanetClick: (id: string) => void;
+}) {
+  return (
+    <div className="sm:hidden absolute inset-x-0 bottom-0 z-20 flex justify-center pb-6 px-4 pointer-events-auto">
+      <div className="grid grid-cols-3 gap-3 w-full max-w-xs">
+        {planets.map((planet, i) => {
+          const label = planet.name
+            .replace(" Planet", "")
+            .replace(" Station", "");
+          return (
+            <motion.button
+              key={planet.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 + i * 0.08, type: "spring" }}
+              onClick={() => onPlanetClick(planet.id)}
+              className="flex flex-col items-center gap-1.5 py-3 px-2 rounded-2xl border border-white/10 backdrop-blur-md touch-manipulation active:scale-95 transition-transform"
+              style={{
+                background: `radial-gradient(ellipse at top, ${planet.colors.primary}22, transparent 70%), rgba(10,10,30,0.6)`,
+              }}
+              aria-label={`Navigate to ${planet.name}`}
+            >
+              <div
+                className="w-10 h-10 rounded-full flex items-center justify-center text-base"
+                style={{
+                  background: `radial-gradient(circle at 30% 30%, ${planet.colors.secondary}, ${planet.colors.primary})`,
+                  boxShadow: `0 0 12px ${planet.colors.glow}, 0 0 24px ${planet.colors.glow}`,
+                }}
+              >
+                {planet.icon}
+              </div>
+              <span className="text-[10px] font-semibold text-text-secondary leading-tight text-center">
+                {label}
+              </span>
+            </motion.button>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -143,11 +187,11 @@ export default function HomePage() {
     <div className="relative min-h-screen overflow-hidden space-bg">
       <Navbar />
 
-      {/* Galaxy Canvas */}
+      {/* Galaxy Canvas (tablet+: full 2D orbit or 3D) */}
       <div className="absolute inset-0 z-0">
         {is3DSupported ? (
           <Suspense
-            fallback={<Galaxy2DFallback onPlanetClick={handlePlanetClick} />}
+            fallback={<Galaxy2DOrbit onPlanetClick={handlePlanetClick} />}
           >
             <GalaxyScene
               onPlanetClick={handlePlanetClick}
@@ -156,7 +200,7 @@ export default function HomePage() {
             />
           </Suspense>
         ) : (
-          <Galaxy2DFallback onPlanetClick={handlePlanetClick} />
+          <Galaxy2DOrbit onPlanetClick={handlePlanetClick} />
         )}
       </div>
 
@@ -172,7 +216,7 @@ export default function HomePage() {
         )}
       </AnimatePresence>
 
-      {/* Hero Overlay */}
+      {/* Hero Overlay (pointer-events-none so galaxy/grid taps pass through) */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen pointer-events-none px-4">
         {/* Top Hero Content */}
         <motion.div
@@ -246,6 +290,9 @@ export default function HomePage() {
           </span>
         </motion.div>
       </div>
+
+      {/* Mobile planet grid — rendered above everything on xs screens */}
+      <MobilePlanetGrid onPlanetClick={handlePlanetClick} />
     </div>
   );
 }

@@ -5,11 +5,16 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { planets } from "@/data/planets";
 import Navbar from "@/components/layout/Navbar";
-import { Download, ChevronDown } from "lucide-react";
+import { Download } from "lucide-react";
 
 const GalaxyScene = lazy(
   () => import("@/components/galaxy/GalaxyScene")
 );
+
+// CSS orbit sizes (vmin-based so they scale with the smaller screen dimension)
+const ORBIT_SIZES_VMIN = [22, 30, 38, 46, 54, 62];
+// Duration for each orbit in seconds (outer = slower)
+const ORBIT_DURATIONS = [18, 26, 34, 44, 56, 70];
 
 // 2D Fallback for mobile / low-perf
 function Galaxy2DFallback({
@@ -18,64 +23,80 @@ function Galaxy2DFallback({
   onPlanetClick: (id: string) => void;
 }) {
   return (
-    <div className="relative w-full h-full flex items-center justify-center">
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
       {/* Central star */}
-      <div className="absolute w-24 h-24 rounded-full bg-gradient-to-br from-nebula-purple to-nebula-magenta animate-pulse-glow flex items-center justify-center z-10">
-        <span className="text-sm font-bold text-white">Louey</span>
-      </div>
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, type: "spring" }}
+        className="absolute w-14 h-14 sm:w-20 sm:h-20 rounded-full flex items-center justify-center z-20"
+        style={{
+          background:
+            "radial-gradient(circle at 35% 35%, #a855f7, #7B2FF7, #4c1d95)",
+          boxShadow:
+            "0 0 30px rgba(123,47,247,0.7), 0 0 60px rgba(123,47,247,0.4), 0 0 100px rgba(123,47,247,0.2)",
+          animation: "pulse-glow 3s ease-in-out infinite",
+        }}
+      >
+        <span className="text-[10px] sm:text-xs font-bold text-white tracking-wide">
+          Louey
+        </span>
+      </motion.div>
 
-      {/* Planets */}
+      {/* Orbit rings + planets via CSS animation */}
       {planets.map((planet, i) => {
-        const angle = (i * 360) / planets.length;
-        const radius = 28 + i * 5; // percentage from center
-        const x = Math.cos((angle * Math.PI) / 180) * radius;
-        const y = Math.sin((angle * Math.PI) / 180) * radius;
+        const orbitSize = ORBIT_SIZES_VMIN[i];
+        const duration = ORBIT_DURATIONS[i];
+        const label = planet.name
+          .replace(" Planet", "")
+          .replace(" Station", "");
 
-        return (
-          <motion.button
-            key={planet.id}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 + i * 0.1, type: "spring" }}
-            onClick={() => onPlanetClick(planet.id)}
-            className="absolute flex flex-col items-center gap-1 group cursor-pointer"
-            style={{
-              left: `calc(50% + ${x}%)`,
-              top: `calc(50% + ${y}%)`,
-              transform: "translate(-50%, -50%)",
-            }}
-            aria-label={`Navigate to ${planet.name}`}
-          >
-            <div
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-lg transition-transform duration-300 group-hover:scale-125"
-              style={{
-                background: `radial-gradient(circle at 30% 30%, ${planet.colors.secondary}, ${planet.colors.primary})`,
-                boxShadow: `0 0 20px ${planet.colors.glow}, 0 0 40px ${planet.colors.glow}`,
-              }}
-            >
-              {planet.icon}
-            </div>
-            <span className="text-[10px] sm:text-xs text-text-muted group-hover:text-text-primary transition-colors font-medium whitespace-nowrap">
-              {planet.name.replace(" Planet", "").replace(" Station", "")}
-            </span>
-          </motion.button>
-        );
-      })}
-
-      {/* Orbit rings (2D circles) */}
-      {planets.map((planet, i) => {
-        const radius = 28 + i * 5;
         return (
           <div
-            key={`ring-${planet.id}`}
-            className="absolute rounded-full border border-white/5"
+            key={planet.id}
+            // Orbit ring
+            className="absolute rounded-full border border-white/[0.06]"
             style={{
-              width: `${radius * 2}%`,
-              height: `${radius * 2}%`,
-              left: `calc(50% - ${radius}%)`,
-              top: `calc(50% - ${radius}%)`,
+              width: `${orbitSize}vmin`,
+              height: `${orbitSize}vmin`,
+              // Spin the ring — the planet rides at the top of it
+              animation: `orbit-slow ${duration}s linear infinite`,
             }}
-          />
+          >
+            {/* Counter-rotate wrapper — cancel out the ring's spin so planet faces up */}
+            <div
+              className="absolute"
+              style={{
+                top: 0,
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                animation: `orbit-slow ${duration}s linear infinite reverse`,
+              }}
+            >
+              {/* Planet with Framer Motion reveal */}
+              <motion.button
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3 + i * 0.12, type: "spring" }}
+                onClick={() => onPlanetClick(planet.id)}
+                className="flex flex-col items-center gap-0.5 group cursor-pointer touch-manipulation"
+                aria-label={`Navigate to ${planet.name}`}
+              >
+                <div
+                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-sm sm:text-base transition-transform duration-300 group-hover:scale-125 group-active:scale-110"
+                  style={{
+                    background: `radial-gradient(circle at 30% 30%, ${planet.colors.secondary}, ${planet.colors.primary})`,
+                    boxShadow: `0 0 14px ${planet.colors.glow}, 0 0 28px ${planet.colors.glow}`,
+                  }}
+                >
+                  {planet.icon}
+                </div>
+                <span className="text-[9px] sm:text-[11px] text-text-muted group-hover:text-text-primary group-active:text-text-primary transition-colors font-medium whitespace-nowrap bg-space-void/60 px-1 rounded">
+                  {label}
+                </span>
+              </motion.button>
+            </div>
+          </div>
         );
       })}
     </div>
@@ -90,7 +111,18 @@ export default function HomePage() {
     if (typeof window === "undefined") return true;
     // Detect mobile or low-end devices
     const isMobile = window.innerWidth < 768;
-    return !isMobile;
+    if (isMobile) return false;
+    // Also check if WebGL is actually available
+    try {
+      const canvas = document.createElement("canvas");
+      const ctx =
+        canvas.getContext("webgl") ||
+        canvas.getContext("experimental-webgl");
+      if (!ctx) return false;
+    } catch {
+      return false;
+    }
+    return true;
   });
 
   const handlePlanetClick = useCallback(
@@ -210,7 +242,7 @@ export default function HomePage() {
           className="mb-8 flex flex-col items-center gap-1 text-text-muted"
         >
           <span className="text-xs tracking-wider uppercase">
-            click on the planet to travel
+            tap a planet to travel
           </span>
         </motion.div>
       </div>

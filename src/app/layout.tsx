@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | Louey Galaxy",
   },
   description:
-    "3rd-year Information Technology and Business Analytics student at Tunis Business School. Hands-on experience in market analysis, growth strategy, and international partnerships.",
+    "Senior/Final Year Information Technology and Business Analytics student at Tunis Business School. Hands-on experience in market analysis, growth strategy, and international partnerships.",
   keywords: [
     "portfolio",
     "information technology",

@@ -241,7 +241,7 @@ export default function HomePage() {
             <span className="text-text-primary">Galaxy</span>
           </h1>
           <p className="text-base sm:text-lg text-text-secondary max-w-xl mx-auto mb-6">
-            3rd-year Information Technology and Business Analytics student with hands-on experience in market analysis, growth strategy, and international partnerships.
+            Senior/Final Year Information Technology and Business Analytics student at Tunis Business School with hands-on experience in market analysis, growth strategy, and international partnerships.
           </p>
           <div className="flex items-center justify-center gap-3 pointer-events-auto">
             <a

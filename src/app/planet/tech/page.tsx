@@ -37,6 +37,14 @@ const categoryIcons: Record<string, React.ReactNode> = {
 
 const experiences = [
   {
+    title: "Autonomous AI & Growth Engineering Intern",
+    company: "eSteps Health & Mitus AI",
+    location: "Hybrid",
+    date: "July 2026 - August 2026",
+    description:
+      "Worked on building an autonomous AI-powered Growth Engineering system using n8n, Python, JSON, Replit, Apollo, OrangeSlice, and connected APIs. Created automated workflows for LinkedIn, email, newsletters, blog and content creation, lead generation, cold outreach, and SEO/AEO/GEO analysis. Developed AI agents able to continuously research the web, monitor trends and competitors, prioritize opportunities, make growth decisions, and maintain a persistent memory layer that allows the system to learn from previous results and build upon them rather than starting from zero.",
+  },
+  {
     title: "Web Development Intern",
     company: "Prodigy InfoTech",
     location: "Remote",

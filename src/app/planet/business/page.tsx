@@ -86,6 +86,13 @@ const sections = [
 
 const businessExperiences = [
   {
+    title: "Business Development & Growth Intern",
+    company: "eSteps Health & Mitus AI",
+    location: "Hybrid",
+    date: "July 2026 - August 2026",
+    description: "Supported the growth and business development operations of two B2B SaaS startups in HealthTech and SportsTech, focusing on international lead generation, prospecting, and market intelligence based on each company's Ideal Customer Profile. Researched and qualified potential clients, monitored competitors and market trends, and identified opportunities for growth, partnerships, startups, and venture capital. Researched UGC opportunities, HealthTech/AI startups and VC events, while building targeted prospect databases—including coach contacts—to support future outbound campaigns and business development initiatives.",
+  },
+  {
     title: "Marketing & Growth Associate",
     company: "Declic Inc. (500 Global, Blossom x TikTok, Misk, Launch)",
     location: "Multiple Markets",

@@ -245,7 +245,7 @@ export default function HomePage() {
           </p>
           <div className="flex items-center justify-center gap-3 pointer-events-auto">
             <a
-              href="/cv.pdf"
+              href="/Louey-DRIDI-CV.pdf"
               download
               className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium bg-nebula-purple hover:bg-nebula-purple/80 text-white transition-all duration-200 glow-purple"
               id="hero-download-cv"

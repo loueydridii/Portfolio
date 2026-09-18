@@ -189,7 +189,7 @@ export default function ContactStationPage() {
             className="mt-8 flex flex-col sm:flex-row gap-4"
           >
             <a
-              href="/cv.pdf"
+              href="/Louey-DRIDI-CV.pdf"
               download
               className="flex-1 flex items-center justify-center gap-3 w-full py-4 rounded-xl glass glass-hover text-text-primary font-medium transition-all duration-300 group hover:border-nebula-purple/30"
               id="contact-download-cv"

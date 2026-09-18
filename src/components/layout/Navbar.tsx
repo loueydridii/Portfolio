@@ -43,7 +43,7 @@ export default function Navbar() {
           {/* CTA + Mobile Toggle */}
           <div className="flex items-center gap-3">
             <a
-              href="/cv.pdf"
+              href="/Louey-DRIDI-CV.pdf"
               download
               className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-nebula-purple/20 text-nebula-purple border border-nebula-purple/30 hover:bg-nebula-purple/30 transition-all duration-200"
               id="nav-download-cv"
@@ -96,7 +96,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <a
-                href="/cv.pdf"
+                href="/Louey-DRIDI-CV.pdf"
                 download
                 className="flex items-center gap-3 px-4 py-3 rounded-lg text-nebula-purple hover:bg-nebula-purple/10 transition-all duration-200"
                 id="mobile-nav-cv"

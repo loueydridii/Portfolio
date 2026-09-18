@@ -188,7 +188,11 @@ export default function HomePage() {
       <Navbar />
 
       {/* Galaxy Canvas (tablet+: full 2D orbit or 3D) */}
-      <div className="absolute inset-0 z-0">
+      <motion.div 
+        className="absolute inset-0 z-0 origin-center"
+        animate={isZooming ? { scale: 4, opacity: 0 } : { scale: 1, opacity: 1 }}
+        transition={{ duration: 0.7, ease: [0.43, 0.13, 0.23, 0.96] }}
+      >
         {is3DSupported ? (
           <Suspense
             fallback={<Galaxy2DOrbit onPlanetClick={handlePlanetClick} />}
@@ -202,7 +206,7 @@ export default function HomePage() {
         ) : (
           <Galaxy2DOrbit onPlanetClick={handlePlanetClick} />
         )}
-      </div>
+      </motion.div>
 
       {/* Zoom-out overlay transition */}
       <AnimatePresence>
@@ -217,7 +221,11 @@ export default function HomePage() {
       </AnimatePresence>
 
       {/* Hero Overlay (pointer-events-none so galaxy/grid taps pass through) */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen pointer-events-none px-4">
+      <motion.div 
+        className="relative z-10 flex flex-col items-center justify-center min-h-screen pointer-events-none px-4"
+        animate={isZooming ? { opacity: 0, y: -20 } : { opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
         {/* Top Hero Content */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -289,7 +297,7 @@ export default function HomePage() {
             tap a planet to travel
           </span>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Mobile planet grid — rendered above everything on xs screens */}
       <MobilePlanetGrid onPlanetClick={handlePlanetClick} />

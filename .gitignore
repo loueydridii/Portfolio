@@ -56,5 +56,8 @@ CLAUDE.md
 *.swp
 *.swo
 
-# gemini
+# gemini / agents
 .gemini/
+.agent/
+.agents/
+graphify-out/

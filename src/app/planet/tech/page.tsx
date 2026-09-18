@@ -189,16 +189,24 @@ export default function TechPlanetPage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 auto-rows-min"
           >
-            {techProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                variants={itemVariants}
-                className={`group glass rounded-2xl overflow-hidden hover:border-nebula-blue/30 transition-all duration-300 flex flex-col ${hasRichContent(project) ? "cursor-pointer" : ""}`}
-                id={`project-${project.id}`}
-                onClick={() => hasRichContent(project) && openProject(project)}
-              >
+            {techProjects.map((project, idx) => {
+              // Bento Grid layout logic
+              let spanClass = "";
+              if (idx === 0) spanClass = "md:col-span-2 xl:col-span-2 xl:row-span-2";
+              else if (idx === 1) spanClass = "md:col-span-1 xl:col-span-1 xl:row-span-2";
+              else if (idx === 3) spanClass = "md:col-span-1 xl:col-span-2";
+              else if (idx === 5) spanClass = "md:col-span-2 xl:col-span-3";
+
+              return (
+                <motion.div
+                  key={project.id}
+                  variants={itemVariants}
+                  className={`group glass rounded-2xl overflow-hidden hover:border-nebula-blue/40 transition-all duration-300 flex flex-col ${hasRichContent(project) ? "cursor-pointer" : ""} ${spanClass}`}
+                  id={`project-${project.id}`}
+                  onClick={() => hasRichContent(project) && openProject(project)}
+                >
                 {/* Card Header — Category Gradient Strip */}
                 <div
                   className={`h-1 w-full bg-gradient-to-r ${project.categoryColor}`}
@@ -297,7 +305,8 @@ export default function TechPlanetPage() {
                   </div>
                 </div>
               </motion.div>
-            ))}
+              );
+            })}
           </motion.div>
         </div>
       </section>

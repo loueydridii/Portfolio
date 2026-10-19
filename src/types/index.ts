@@ -47,6 +47,7 @@ export interface TechProject {
   techStack: string[];
   skills: string[];
   github?: string;
+  demo?: string;
   report?: string;
   slides?: string;
   logo?: string;

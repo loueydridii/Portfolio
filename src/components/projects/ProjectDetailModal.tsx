@@ -17,6 +17,7 @@ import {
   Layers,
   AlertTriangle,
   Sparkles,
+  Globe,
 } from "lucide-react";
 import Image from "next/image";
 import { useEffect } from "react";
@@ -295,6 +296,19 @@ export default function ProjectDetailModal({
 
                 {/* Action Links */}
                 <div className="flex flex-wrap items-center gap-3 pt-6 border-t border-white/5">
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-nebula-blue to-nebula-cyan text-white shadow-lg shadow-nebula-blue/25 hover:shadow-nebula-blue/40 hover:scale-[1.02] transition-all duration-200"
+                      id={`modal-${project.id}-demo`}
+                    >
+                      <Globe className="w-4 h-4" />
+                      Live Platform
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  )}
                   {project.github && project.github !== "#" && (
                     <a
                       href={project.github}

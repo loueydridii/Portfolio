@@ -2,6 +2,182 @@ import { TechProject } from "@/types";
 
 export const techProjects: TechProject[] = [
   {
+    id: "ieee-tbs-sb",
+    title: "IEEE TBS Student Branch Web Platform & 3D Interactive Publication",
+    tagline: "Enterprise React 19 platform with custom 3D flipbook, procedural Web Audio, and CI/CD",
+    category: "Full-Stack Web & 3D",
+    categoryColor: "from-blue-600 via-indigo-500 to-cyan-400",
+    description:
+      "Official digital flagship for the first IEEE Student Branch at a state business university in Tunisia. Bridges business leadership and technology innovation through an editorial visual identity, hardware-accelerated GSAP motion storytelling, an interactive pure-React 3D publication reader with multi-level zoom and procedural audio synthesis, and an automated GitHub Actions FTPS deployment pipeline.",
+    techStack: [
+      "React 19",
+      "TypeScript",
+      "Vite 8",
+      "Tailwind CSS v4",
+      "GSAP 3",
+      "Lenis Scroll",
+      "Web Audio API",
+      "GitHub Actions",
+      "Python FTPS",
+    ],
+    skills: [
+      "Frontend Architecture",
+      "UI/UX Design",
+      "3D Web Transforms",
+      "Procedural Audio",
+      "CI/CD & DevOps",
+      "Performance Optimization",
+      "WCAG 2.1 AA",
+    ],
+    github: "https://github.com/IEEE-TBS-SB/website",
+    demo: "https://tbs.ieee.tn/",
+    logo: "/images/projects/ieee-tbs-sb/logo-blue.svg",
+    duration: "July 2026 - Present",
+    teamSize: 1,
+    context: "Official Student Branch Lead Web Developer",
+    problem:
+      "Standard university clubs rely on fragmented social media or generic templates that collapse on mobile, lack identity, and fail to engage prospective members and global IEEE partners. When publishing a 14-page official guide book, embedding PDF iframes was slow and clumsy, while existing 3D canvas libraries (such as page-flip) broke under React 19 StrictMode, collapsed layouts to 0px, and blocked pointer clicks on controls.",
+    solution:
+      "Architected a custom pure-React 19 editorial web platform combining modern grotesque typography, dynamic brand lighting, and an in-house 3D flipbook engine built with declarative CSS 3D transforms. Synthesized paper rustle audio in real-time via the Web Audio API with zero latency and 0 KB network payload. Built an automated GitHub Actions CI/CD pipeline using Python and explicit TLS FTPS for sub-second (< 980ms), zero-downtime production deployments to tbs.ieee.tn.",
+    contributions: [
+      "Architected and developed the entire frontend codebase using React 19, Vite 8, and TypeScript",
+      "Engineered a custom dependency-free 3D flipbook with dual-page spreads, mobile single-page adaptation, and 100%–250% bounded zoom & drag-to-pan",
+      "Developed a zero-latency procedural paper-turn audio synthesizer using the Web Audio API (0 KB network overhead)",
+      "Implemented multi-tier background asset preloading with requestIdleCallback, hover prefetching, and adjacent-page caching",
+      "Designed the complete editorial visual identity, fluid typography, and WCAG 2.1 AA accessible motion system with GSAP and Lenis",
+      "Configured an automated GitHub Actions CI/CD pipeline deploying via encrypted explicit TLS FTPS with zero downtime",
+    ],
+    features: [
+      {
+        title: "Core Platform & Editorial UI",
+        items: [
+          "Interactive Eagle Hero — Splash screen intro with session storage and animated badge counters",
+          "CountUp Impact Metrics — Real-time animated counters for members, events, and national awards",
+          "Activities Directory — Dynamic event slugs (/activities/:slug) with timelines and vTools integration",
+          "Photo Montage & Community — Live delegation galleries and leadership directory with social handles",
+        ],
+      },
+      {
+        title: "Pure-React 3D Digital Publication Engine",
+        items: [
+          "Dual-Page Spread — Realistic book spread with spine shadow groove and layered edge thickness simulation",
+          "Mobile Responsive — Adaptive single-page view with touch gestures and optimized controls",
+          "Multi-Level Zoom & Pan — 100% to 250% magnification with smooth clamped mouse/touch drag-to-pan",
+          "Reader Utilities — Table of Contents drawer, thumbnail scrubber, auto-turn mode, and PDF download",
+        ],
+      },
+      {
+        title: "Procedural Audio & Asset Preloading",
+        items: [
+          "Web Audio API Synthesis — Modulated pink noise bandpass filter sweep (1200Hz to 600Hz) with 0ms latency and 0 KB download",
+          "Idle-Time Preloading — Progressive background page decoding via requestIdleCallback",
+          "Hover-Intent Prefetching — Pre-caches the guide the moment user hovers the navigation link",
+          "Adjacent Page Caching — Keeps currentPage ± 2 in memory for instantaneous page turns",
+        ],
+      },
+      {
+        title: "DevOps, Performance & Accessibility",
+        items: [
+          "Automated CI/CD — GitHub Actions runner executing npm ci, tsc validation, and Vite production builds",
+          "FTPS Deployment — Python upload_ftp.py script connecting via explicit TLS with zero downtime",
+          "Sub-Second Builds — Production build completed in ~976ms with deterministic dependency pinning",
+          "WCAG 2.1 AA Motion — Native prefers-reduced-motion queries with zero layout shift (CLS < 0.01)",
+        ],
+      },
+    ],
+    extraDocs: [
+      { label: "3D Guide Book Reader", href: "https://tbs.ieee.tn/guide" },
+      { label: "Design System Showcase", href: "https://tbs.ieee.tn/design-system" },
+      { label: "Official Guide Book PDF", href: "/documents/projects/ieee-tbs-sb-guide-book.pdf" },
+    ],
+  },
+  {
+    id: "gaia-growth-agent",
+    title: "GAIA — Autonomous Growth AI Operating System",
+    tagline: "Goal-driven autonomous growth OS with Gemini 2.5 Pro, Graphiti Neo4j memory, and n8n execution",
+    category: "Autonomous AI & Growth",
+    categoryColor: "from-emerald-400 via-teal-500 to-cyan-400",
+    description:
+      "A fully autonomous, goal-driven Growth Operating System that observes market signals, reasons with persistent temporal memory, plans multi-step campaigns, and executes them across marketing, sales, and analytics stacks without continuous human prompting. Operates in 'CEO Mode' from a single North Star metric directive.",
+    techStack: [
+      "Python",
+      "FastAPI",
+      "Gemini 2.5 Pro",
+      "Neo4j",
+      "Graphiti",
+      "PostgreSQL",
+      "Redis",
+      "Celery",
+      "n8n",
+      "Tavily",
+      "Exa AI",
+      "SQLAlchemy",
+    ],
+    skills: [
+      "Agentic AI Architecture",
+      "Autonomous Workflows",
+      "Temporal Knowledge Graphs",
+      "Growth Engineering",
+      "Async Distributed Systems",
+      "Policy Engine Design",
+      "Brand Verification & Safety",
+    ],
+    github: "https://github.com/loueydridii/Growth-Agent---GAIA",
+    duration: "Summer 2026",
+    teamSize: 1,
+    context: "Autonomous AI Research & Growth Engineering Platform",
+    problem:
+      "Traditional growth operations are reactive and fragmented: teams manually brainstorm content, research competitors, find leads, and schedule campaigns across disparate tools. Conventional AI chatbots lack persistent temporal memory, hallucinate unverified facts, fail to learn from historical campaign performance, and require constant manual prompting.",
+    solution:
+      "GAIA inverts growth engineering by operating autonomously in CEO Mode from a single measurable directive. It couples Google Gemini 2.5 Pro function calling with a Graphiti temporal knowledge graph in Neo4j to retain continuous historical memory. It plans multi-step campaigns with an Evidence Engine and Brand Guardian, runs automated executions via an n8n executor, syncs qualified leads to CRM, and learns from every campaign outcome via a self-healing Critic loop.",
+    contributions: [
+      "Architected the full end-to-end agentic system and dependency-graph planner with Python FastAPI and Gemini 2.5 Pro",
+      "Engineered persistent temporal memory using Graphiti on Neo4j to store past experiments, competitor changes, and campaign learnings",
+      "Built the Content Factory and Repurposing Engine generating 11 marketing formats calibrated to company brand voice and ICP",
+      "Designed the Brand Guardian verification layer to validate facts, tone, and forbidden phrases with line-level annotations",
+      "Integrated parallel multi-engine intelligence (Tavily + Exa) for daily competitor surveillance and ICP lead scoring (0–100)",
+      "Implemented a 3-tier Tool Policy Engine (AUTO, APPROVAL, BLOCKED) to guarantee enterprise safety and human oversight",
+    ],
+    features: [
+      {
+        title: "Autonomous Orchestrator & Memory",
+        items: [
+          "CEO Mode Directive — Set one North Star metric; orchestrator plans and executes autonomously",
+          "Graphiti Temporal Memory — Neo4j knowledge graph preserving past experiments and learnings",
+          "Evidence Engine — Rigorous claim verification against known company facts before planning",
+          "Self-Healing Critic Loop — Evaluates execution outcomes, retries on failure, and commits successes to memory",
+        ],
+      },
+      {
+        title: "Content Factory & Repurposing Engine",
+        items: [
+          "11 Output Formats — Blogs, newsletters, email sequences, LinkedIn posts, case studies, AEO FAQs, and video scripts",
+          "Brand Guardian — Gemini Flash enforcement validating tone, rules, and facts with APPROVED / REJECT verdicts",
+          "Repurposing Engine — Transforms 1 long-form article into 6 channel-optimized assets automatically",
+          "Multimedia Prompts — DALL-E 3 image briefs and Higgsfield AI video prompt generation",
+        ],
+      },
+      {
+        title: "Intelligence & Lead Acquisition",
+        items: [
+          "Competitor Monitoring — Daily scans of pricing, job postings, and ad copy via Tavily + Exa in parallel",
+          "Multi-Engine Synthesis — Merges, deduplicates, and synthesizes answers from multiple search providers",
+          "Automated Lead Scoring — Evaluates prospective companies 0–100 against active ICP criteria",
+          "CRM Auto-Sync — Pushes scored and enriched leads (>70) directly into HubSpot CRM",
+        ],
+      },
+      {
+        title: "Safety, Policy Engine & Architecture",
+        items: [
+          "3-Tier Policy Engine — AUTO (safe queries/reads), APPROVAL (publishing/emails), BLOCKED (bulk deletes)",
+          "FastAPI Backend — Async architecture with 9 modular route modules and PostgreSQL state",
+          "Distributed Task Queue — Redis + Celery handling long-running background agent executions",
+          "n8n Integration — REST API-connected n8n automation executor for reliable third-party actions",
+        ],
+      },
+    ],
+  },
+  {
     id: "dar-el-behy",
     title: "Dar El Behy",
     tagline: "Smart home control system with voice commands & AI suggestions",

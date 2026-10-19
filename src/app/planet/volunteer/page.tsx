@@ -134,8 +134,15 @@ const organizations: Organization[] = [
     bgColor: "bg-cyan-400",
     roles: [
       {
+        title: "Lead Web Developer",
+        date: "July 2026 - Present",
+        description:
+          "Architected, launched, and actively maintaining the official web platform (tbs.ieee.tn) and 3D digital publication reader, establishing the branch's digital presence across IEEE Tunisia Section and Region 8.",
+        tags: ["Lead Web Developer", "React 19", "UI/UX Architecture", "Platform Launch"],
+      },
+      {
         title: "Founding Member",
-        date: "",
+        date: "2024 - Present",
         description:
           "Part of the founding team that established the IEEE Student Branch at Tunis Business School. Helped build the organizational foundation, recruit initial members, and set the vision for bridging technology and business education.",
         tags: ["Founding Team", "IEEE", "Technology", "Organization Building"],

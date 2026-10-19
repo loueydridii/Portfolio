@@ -37,6 +37,19 @@ const categoryIcons: Record<string, React.ReactNode> = {
 
 const experiences = [
   {
+    title: "Lead Web Developer",
+    company: "IEEE TBS Student Branch",
+    location: "Tunis, Tunisia · Hybrid",
+    date: "July 2026 - Present",
+    description:
+      "Architected, built, and continuously maintaining the official enterprise web platform and digital flagship (tbs.ieee.tn) for the first IEEE Student Branch at a state business university in Tunisia. Engineered a custom, dependency-free pure-React 19 / TypeScript 3D digital publication engine featuring dual-page spreads, mobile single-page views, multi-level zoom (100%–250%), bounded drag-to-pan, and zero-latency procedural paper-turn audio synthesis via Web Audio API (0 KB network overhead). Designed an editorial visual identity with fluid typography, dynamic SVG eagle motifs, and WCAG 2.1 AA accessible GSAP 3 / Lenis motion storytelling. Built and automated a zero-downtime GitHub Actions CI/CD pipeline deploying via encrypted explicit TLS FTPS with sub-second production builds (< 980ms).",
+    links: [
+      { label: "Live Platform (tbs.ieee.tn)", href: "https://tbs.ieee.tn/" },
+      { label: "3D Guide Book", href: "https://tbs.ieee.tn/guide" },
+      { label: "GitHub Repository", href: "https://github.com/IEEE-TBS-SB/website" },
+    ],
+  },
+  {
     title: "Autonomous AI & Growth Engineering Intern",
     company: "eSteps Health & Mitus AI",
     location: "Hybrid",
@@ -162,9 +175,26 @@ export default function TechPlanetPage() {
                 <p className="text-xs text-text-muted mb-3">
                   {exp.location}
                 </p>
-                <p className="text-sm text-text-muted">
+                <p className="text-sm text-text-muted leading-relaxed">
                   {exp.description}
                 </p>
+                {"links" in exp && exp.links && (exp.links as { label: string; href: string }[]).length > 0 && (
+                  <div className="flex flex-wrap items-center gap-2 mt-4 pt-3 border-t border-white/5">
+                    {(exp.links as { label: string; href: string }[]).map((link, lIdx) => (
+                      <a
+                        key={lIdx}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-cyan-300 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/25 hover:border-cyan-400/40 transition-all duration-200"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        {link.label}
+                        <ArrowUpRight className="w-3 h-3 opacity-60" />
+                      </a>
+                    ))}
+                  </div>
+                )}
               </motion.div>
             ))}
           </motion.div>
@@ -205,7 +235,8 @@ export default function TechPlanetPage() {
               if (idx === 0) spanClass = "md:col-span-2 xl:col-span-2 xl:row-span-2";
               else if (idx === 1) spanClass = "md:col-span-1 xl:col-span-1 xl:row-span-2";
               else if (idx === 3) spanClass = "md:col-span-1 xl:col-span-2";
-              else if (idx === 5) spanClass = "md:col-span-2 xl:col-span-3";
+              else if (idx === 7) spanClass = "md:col-span-1 xl:col-span-2";
+              else if (idx === 10) spanClass = "md:col-span-2 xl:col-span-2";
 
               return (
                 <motion.div
@@ -261,6 +292,20 @@ export default function TechPlanetPage() {
 
                   {/* Action Links */}
                   <div className="flex items-center gap-2 pt-4 border-t border-white/5">
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-cyan-300 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 transition-all duration-200"
+                        id={`project-${project.id}-demo`}
+                      >
+                        <Globe className="w-3.5 h-3.5" />
+                        Live Demo
+                        <ArrowUpRight className="w-3 h-3 opacity-70" />
+                      </a>
+                    )}
                     {project.github && project.github !== "#" && (
                       <a
                         href={project.github}
